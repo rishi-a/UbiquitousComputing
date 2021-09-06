@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{ali2015keystroke}
+Kamran Ali, Alex~X Liu, Wei Wang, and Muhammad Shahzad.
+\newblock Keystroke recognition using wifi signals.
+\newblock In {\em Proceedings of the 21st annual international conference on
+  mobile computing and networking}, pages 90--102, 2015.
+
+\bibitem{halperin2011tool}
+Daniel Halperin, Wenjun Hu, Anmol Sheth, and David Wetherall.
+\newblock Tool release: Gathering 802.11 n traces with channel state
+  information.
+\newblock {\em ACM SIGCOMM Computer Communication Review}, 41(1):53--53, 2011.
+
+\bibitem{li2016wifinger}
+Hong Li, Wei Yang, Jianxin Wang, Yang Xu, and Liusheng Huang.
+\newblock Wifinger: Talk to your smart devices with finger-grained gesture.
+\newblock In {\em Proceedings of the 2016 ACM International Joint Conference on
+  Pervasive and Ubiquitous Computing}, pages 250--261, 2016.
+
+\bibitem{pu2013whole}
+Qifan Pu, Sidhant Gupta, Shyamnath Gollakota, and Shwetak Patel.
+\newblock Whole-home gesture recognition using wireless signals.
+\newblock In {\em Proceedings of the 19th annual international conference on
+  Mobile computing \& networking}, pages 27--38, 2013.
+
+\bibitem{sigg2013rf}
+Stephan Sigg, Markus Scholz, Shuyu Shi, Yusheng Ji, and Michael Beigl.
+\newblock Rf-sensing of activities from non-cooperative subjects in device-free
+  recognition systems using ambient and local signals.
+\newblock {\em IEEE Transactions on Mobile Computing}, 13(4):907--920, 2013.
+
+\bibitem{sigg2013leveraging}
+Stephan Sigg, Shuyu Shi, Felix Buesching, Yusheng Ji, and Lars Wolf.
+\newblock Leveraging rf-channel fluctuation for activity recognition: Active
+  and passive systems, continuous and rssi-based signal features.
+\newblock In {\em Proceedings of International Conference on Advances in Mobile
+  Computing \& Multimedia}, pages 43--52, 2013.
+
+\end{thebibliography}

@@ -1,0 +1,16 @@
+pfodDwgControls	KEYWORD1
+pfodControl	KEYWORD1
+draw	KEYWORD2
+update	KEYWORD2
+getValue	KEYWORD2
+setValue	KEYWORD2
+getCmd	KEYWORD2
+DesignerSwitch	KEYWORD1
+Gauge	KEYWORD1
+Help	KEYWORD1
+IndicatorButton	KEYWORD1
+OnOffSlider	KEYWORD1
+OnOffSwitch	KEYWORD1
+RadiationSymbol	KEYWORD1
+Slider	KEYWORD1
+VSlider	KEYWORD1
