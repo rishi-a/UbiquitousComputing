@@ -1,6 +1,7 @@
 int thresholdCrossCount=0;
 
 void debughr(){
+  digitalWrite(select,LOW);
   analogWrite(ir,255);
   data = (double)analogRead (sensorPin); // read the sensor   
   //Serial.println(data);
@@ -14,10 +15,10 @@ void debughr(){
   
 }
 void hr(){
+     digitalWrite(select,LOW);
      analogWrite(ir,255);
      
      bool peakDetected = 0;
-
 
     //fingerPlacement();
     Serial.println("Sensing your heart rate now");

@@ -22,30 +22,31 @@ void hb2rx(){
   num=abs(num);
   hb=(float)num/den;
   hb=hb+hbo;
-  Serial.print("HB:");
-  Serial.println(hb);
+  if(od680>10){
+    Serial.print("HB:");
+    Serial.println(hb);
+  }
+  else{
+    Serial.println("Wait. .searching for your finger");
+  }
 }
 
 
 void nwod_red(){
+  //digitalWrite(select, HIGH); //selects the RED coupled IR Receiver
   odA_red=analogRead(2);
-  Serial.print("I Red");
+  Serial.print("I Red ");
   Serial.println(odA_red);
- // Serial.print("odA");
- // Serial.println(odA);
- 
   odA_red=(float)(2*log((float)1000/odA_red)/2.3);
   odA_red=odA_red*64500*0.13;  
   //odA_red=odA_red*64500*0.9;  
 }
 
 void nwod_ir(){
+  //digitalWrite(select, LOW); //selects the IR coupled IR Receiver
   odA_ir=analogRead(1);
-  Serial.print("I0 IR");
+  Serial.print("I0 IR ");
   Serial.println(odA_ir);
- // Serial.print("odA");
- // Serial.println(odA);
-  
   odA_ir=(float)(2*log((float)1000/odA_ir)/2.3);
   odA_ir=odA_ir*64500*0.13;
   //odA_ir=odA_ir*64500*0.9;  
