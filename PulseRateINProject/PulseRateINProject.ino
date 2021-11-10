@@ -12,6 +12,8 @@ PeakDetection peakDetection;
 /*Define the Pins*/
 int red=3, ir=10, select=8;
 
+/*This variable will store the string datatype of pulse rate, which is originally float*/
+char sBPM[8]; // Buffer big enough for 7-character float
 
 void setup() {
    Serial.begin(9600);
@@ -34,11 +36,11 @@ void loop (){
   else{
     if (EEBlue.available()){
       int ble_input = EEBlue.read();
-      Serial.write(ble_input);
+      Serial.println(":Welcome To Two Touch Doctor:\n");
       EEBlue.write(":Welcome To Two Touch Doctor:\n");
       
       
-      delay(3000);  //wait for some seconds for the user to stabilize
+      delay(5000);  //wait for some seconds for the user to stabilize
       hr();      //this function calculates the BPM and prints it in the Serial Monitor.  
       delay(1000);
       //hb2rx();

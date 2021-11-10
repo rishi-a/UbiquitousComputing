@@ -25,7 +25,7 @@ void hr(){
     bool peakDetected = 0;
 
     //fingerPlacement();
-    Serial.println("Be steady. Sensing your heart rate now");
+    //Serial.println("Be steady. Sensing your heart rate now");
     
     unsigned long programStartTime = millis();
 
@@ -37,14 +37,14 @@ void hr(){
         //Serial.println(filtered);
 
  
-        if(filtered>=(290)){ //280
+        if(filtered>=(400)){ //280
           
           if(!peakDetected){
             thresholdCrossCount+=1;
             peakDetected = 1;
           }
         }
-        if(filtered<(289)){ //265 for filtered /277
+        if(filtered<(150)){ //265 for filtered /277
           peakDetected=0;  
         }
 
@@ -57,9 +57,11 @@ void hr(){
       thresholdCrossCount=0; //reset after recording every BPM
       if(BPM >=60 && BPM <= 120){
         Serial.print("Heart Rate:");
-        EEBlue.write("Heart Rate:\n");
+        EEBlue.write("Heart Rate: ");
+
+        dtostrf(BPM, 6, 2, sBPM); // Leave room for too large numbers!
         Serial.println(BPM);
-        EEBlue.write(BPM);
+        EEBlue.write(sBPM);
         EEBlue.write("\n");
         programStartTime = millis(); 
       }
@@ -68,7 +70,8 @@ void hr(){
         delay(2000); //put a delay as user will move her finger after seeing the above message
         programStartTime = millis();
         Serial.println("Repeating...");
-        EEBlue.write("ERROR. Trying again\n");
+        EEBlue.write("Placement Incorrect. Trying again\n");
+        delay(2000);
         hr();
       }
     
