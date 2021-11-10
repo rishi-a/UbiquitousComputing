@@ -24,9 +24,9 @@ void hr(){
      
     bool peakDetected = 0;
 
-    fingerPlacement();
+    //fingerPlacement();
     Serial.println("Be steady. Sensing your heart rate now");
-
+    
     unsigned long programStartTime = millis();
 
      do{
@@ -37,14 +37,14 @@ void hr(){
         //Serial.println(filtered);
 
  
-        if(filtered>=280){ //300 for filtered //280
+        if(filtered>=(290)){ //280
           
           if(!peakDetected){
             thresholdCrossCount+=1;
             peakDetected = 1;
           }
         }
-        if(filtered<265){ //150 for filtered
+        if(filtered<(289)){ //265 for filtered /277
           peakDetected=0;  
         }
 
@@ -57,7 +57,10 @@ void hr(){
       thresholdCrossCount=0; //reset after recording every BPM
       if(BPM >=60 && BPM <= 120){
         Serial.print("Heart Rate:");
-        Serial.println(BPM); 
+        EEBlue.write("Heart Rate:\n");
+        Serial.println(BPM);
+        EEBlue.write(BPM);
+        EEBlue.write("\n");
         programStartTime = millis(); 
       }
       else{
@@ -65,6 +68,7 @@ void hr(){
         delay(2000); //put a delay as user will move her finger after seeing the above message
         programStartTime = millis();
         Serial.println("Repeating...");
+        EEBlue.write("ERROR. Trying again\n");
         hr();
       }
     
@@ -92,7 +96,7 @@ void fingerPlacement(){
        storeAnalog[i++] = filtered; 
      }
      threshold = sum(storeAnalog+25, storeAnaloglength-30)/(storeAnaloglength-30); //we are ignoring first 25 values of the sensor
-     threshold = threshold+5; //Anything above 4% of this threshold is a peak;
+     threshold = threshold+2; //Anything above 4% of this threshold is a peak;
      Serial.println("Threshold is: ");
      Serial.println(threshold);
      Serial.println("Keep your finger");

@@ -14,7 +14,9 @@ void  bp(){
   peakDetection.add(data);
   int peak = peakDetection.getPeak();
   double filtered = peakDetection.getFilt();
-  while(filtered<270){
+
+  
+  while(filtered>270){
     Serial.println(".");
     data = (double)analogRead (sensorPin); // read the IR sensor that gives us PR
     peakDetection.add(data);
@@ -25,5 +27,8 @@ void  bp(){
   pressureValue = analogRead(A5);
   Serial.println("SYS: ");
   Serial.print(pressureValue);
+
+  //start decrease
+  
 }
   
