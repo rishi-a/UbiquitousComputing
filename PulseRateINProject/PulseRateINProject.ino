@@ -11,6 +11,8 @@ PeakDetection peakDetection;
 
 /*Define the Pins*/
 int red=3, ir=10, select=8;
+double window[150];
+int i;
 
 /*This variable will store the string datatype of pulse rate, which is originally float*/
 char sBPM[8]; // Buffer big enough for 7-character float
@@ -20,6 +22,9 @@ void setup() {
    EEBlue.begin(38400);  
    peakDetection.begin(30, 3, 0.2);
    pinMode(select, OUTPUT);
+   for(i=0;i<150;i++){
+      window[i] = 0;
+    }
    
 }
 void loop (){
