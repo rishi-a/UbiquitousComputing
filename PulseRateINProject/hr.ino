@@ -31,13 +31,13 @@ void debugbp(){
   double large1 = 0;
   double small2 = 1000;
   double large2 = 0;
-  Serial.println("removing initial data") ;
+  EEBlue.write("removing initial data") ;
   for(i = 0;i<1000;i++){
     data = (double)analogRead (sensorPin); 
     peakDetection.add(data);
   filtered = peakDetection.getFilt();
     }
-  Serial.println("done");
+  EEBlue.write("done");
   for(i = 0;i<150;i++){
   data = (double)analogRead (sensorPin); 
   
@@ -73,7 +73,7 @@ void debugbp(){
 //Serial.println(small); 
 //Serial.println(large); 
   double thresh= ((large2-small2)+(large1-small1))/2.0;
-Serial.println("pump air"); 
+EEBlue.write("pump air"); 
 Serial.println(thresh);
 //thresh = 4;
 double smallc=0;
@@ -101,7 +101,7 @@ int index;
     }
   //Serial.println(largec-smallc); 
   Serial.println("systole ");
-  Serial.println("remove air");
+  EEBlue.write("remove air");
   syst1 = analogRead(A5)*1.131-16.76 ;
  delay(2000);
   while(largec-smallc<thresh*0.8){
@@ -148,9 +148,9 @@ double maxdiff = largec-smallc  ;
   
  Serial.println("diastole");
 diast=analogRead(A5)*1.131-16.76 ;
-Serial.println(syst1);
+EEBlue.write(syst1);
 Serial.println(syst2);
-Serial.println(diast);
+EEBlue.write(diast);
 delay(3000);
 
  
