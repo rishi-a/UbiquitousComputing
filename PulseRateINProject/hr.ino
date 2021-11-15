@@ -2,6 +2,7 @@
 
 int threshold; //this is the threshold to detect peaks. This will be determined in the fignerplacement test and used further to detect heart rate
 
+
 void debughr(){
   digitalWrite(select,LOW);
   analogWrite(ir,255);
@@ -16,6 +17,147 @@ void debughr(){
 
   
 }
+
+
+void debugbp(){
+  digitalWrite(select,LOW);
+  analogWrite(ir,255);
+  double filtered;
+  int i;
+  float data = (double)analogRead (sensorPin); // read the sensor   
+  //Serial.println(data);
+  //Serial.print(",");
+  double small1 = 1000;
+  double large1 = 0;
+  double small2 = 1000;
+  double large2 = 0;
+  Serial.println("removing initial data") ;
+  for(i = 0;i<1000;i++){
+    data = (double)analogRead (sensorPin); 
+    peakDetection.add(data);
+  filtered = peakDetection.getFilt();
+    }
+  Serial.println("done");
+  for(i = 0;i<150;i++){
+  data = (double)analogRead (sensorPin); 
+  
+  peakDetection.add(data);
+  filtered = peakDetection.getFilt();
+  small1 = min(filtered,small1);
+  large1 = max(filtered,large1);
+  Serial.println(filtered); 
+  
+  //Serial.println(peak);
+
+  
+  }
+  int count=0;
+  for(i = 0;i<150;i++){
+  data = (double)analogRead (sensorPin); 
+
+  peakDetection.add(data);
+  filtered = peakDetection.getFilt();
+  window[count] = filtered;
+  count = count+1;
+  small2 = min(filtered,small2);
+  large2 = max(filtered,large2);
+  
+  
+  //Serial.println(peak);
+
+  
+  }
+  count = 0;
+  //double small = (small1+small2)/2.0;
+  //double large = (large1+large2)/2.0;
+//Serial.println(small); 
+//Serial.println(large); 
+  double thresh= ((large2-small2)+(large1-small1))/2.0;
+Serial.println("pump air"); 
+Serial.println(thresh);
+//thresh = 4;
+double smallc=0;
+double largec=1000;
+int index;
+  while(largec-smallc>thresh*0.1){
+    data = (double)analogRead (sensorPin); 
+    peakDetection.add(data);
+    filtered = peakDetection.getFilt();
+    smallc = 1000;
+    largec = 0;
+    for(index = 0;index<149;index++){
+      window[index] = window[index+1];
+      
+      smallc = min(window[index],smallc);
+      largec = max(window[index],largec);
+      }
+    window[149] = filtered;
+    smallc = min(window[149],smallc);
+    largec = max(window[149],largec);
+    
+     //Serial.print(largec-smallc); 
+    // Serial.print("\t");
+     //Serial.println(thresh); 
+    }
+  //Serial.println(largec-smallc); 
+  Serial.println("systole ");
+  Serial.println("remove air");
+  syst1 = analogRead(A5)*1.131-16.76 ;
+ delay(2000);
+  while(largec-smallc<thresh*0.8){
+    data = (double)analogRead (sensorPin); 
+    peakDetection.add(data);
+    filtered = peakDetection.getFilt();
+    smallc = 1000;
+    largec = 0;
+    for(index = 0;index<149;index++){
+      window[index] = window[index+1];
+      
+      smallc = min(window[index],smallc);
+      largec = max(window[index],largec);
+      }
+    window[149] = filtered;
+    smallc = min(window[149],smallc);
+    largec = max(window[149],largec);
+    
+    // Serial.println(filtered); 
+    }
+    Serial.println("thresh2 over"); 
+    syst2 = analogRead(A5)*1.131-16.76 ;
+delay(2000);
+double maxdiff = largec-smallc  ;
+  while(largec-smallc>=maxdiff){
+    maxdiff = largec-smallc;
+    data = (double)analogRead (sensorPin); 
+    peakDetection.add(data);
+    filtered = peakDetection.getFilt();
+    smallc = 1000;
+    largec = 0;
+    for(index = 0;index<149;index++){
+      window[index] = window[index+1];
+      
+      smallc = min(window[index],smallc);
+      largec = max(window[index],largec);
+      }
+    window[149] = filtered;
+    smallc = min(window[149],smallc);
+    largec = max(window[149],largec);
+    
+     //Serial.println(filtered); 
+    }
+  
+ Serial.println("diastole");
+diast=analogRead(A5)*1.131-16.76 ;
+Serial.println(syst1);
+Serial.println(syst2);
+Serial.println(diast);
+delay(3000);
+
+ 
+}
+
+
+
 void hr(){
     int thresholdCrossCount=0;
     float data, BPM;
