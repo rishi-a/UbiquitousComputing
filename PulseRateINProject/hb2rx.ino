@@ -27,8 +27,13 @@ void hb2rx(){
   storeHb[hbCount]=hb;
   if(hbCount==2){
     averageHb = (storeHb[0]+storeHb[1]+storeHb[2])/3;
+    averageHb = averageHb-15; //introduced to tackle offset 
     Serial.print("Hb:");
+    EEBlue.write("Hb:");
+    dtostrf(averageHb, 6, 2, saverageHb); // Leave room for too large numbers!
     Serial.println(averageHb);
+    EEBlue.write(saverageHb);
+    EEBlue.write("\n");
     hbCount=0;
   }
   else{

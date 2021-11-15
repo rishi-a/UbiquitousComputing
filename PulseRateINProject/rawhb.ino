@@ -22,9 +22,13 @@ void spo2(){
 
   R = (ac_r/dc_r)/(ac_ir/dc_ir);
   Hb = (-3.626)*R+15.838; //see Table III of the paper linked above
-  SpO2 = (-22.6*R)+95.842+16;
+  SpO2 = (-22.6*R)+95.842+16-11;
   Serial.print("SpO2:");
+  EEBlue.write("SpO2:");
+  dtostrf(SpO2, 6, 2, sSpO2); // Leave room for too large numbers!
   Serial.println(SpO2);
+  EEBlue.write(sSpO2);
+  EEBlue.write("\n");
   Serial.print("\n");
 
   //gracefully switchoff the IR and LED

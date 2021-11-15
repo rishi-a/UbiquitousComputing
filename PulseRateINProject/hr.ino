@@ -37,14 +37,14 @@ void hr(){
         //Serial.println(filtered);
 
  
-        if(filtered>=(400)){ //280
+        if(filtered>=(350)){ //280
           
           if(!peakDetected){
             thresholdCrossCount+=1;
             peakDetected = 1;
           }
         }
-        if(filtered<(150)){ //265 for filtered /277
+        if(filtered<(200)){ //265 for filtered /277
           peakDetected=0;  
         }
 

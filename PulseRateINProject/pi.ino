@@ -27,8 +27,12 @@ void pi(){
    }while((millis()-startPI)<5000);
    
 
-   pindex = ((maxdata-mindata)/maxdata)*100;
+   pindex = (((maxdata-mindata)/maxdata)*100)-40;
    Serial.println("PI: ");
+   EEBlue.write("PI: ");
+   dtostrf(pindex, 6, 2, spindex); // Leave room for too large number
    Serial.print(pindex);
+   EEBlue.write(spindex);
+   EEBlue.write("\n");
   
 }
