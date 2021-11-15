@@ -11,6 +11,9 @@ PeakDetection peakDetection;
 
 /*Define the Pins*/
 int red=3, ir=10, select=8;
+int i;
+int window_size = 120;
+double window[120];
 
 /*This variable will store the string datatype of pulse rate, which is originally float*/
 char sBPM[8]; // Buffer big enough for 7-character float
