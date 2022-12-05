@@ -1,0 +1,11 @@
+skip first minute
+skip last 20secomds
+
+5 mins
+
+1: sleeping
+2: sleeping
+3: Back side
+4: with vest
+5. with tshirt
+6. lidar is in top
