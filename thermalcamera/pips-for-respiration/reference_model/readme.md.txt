@@ -1,0 +1,1 @@
+Find the model in the `thermal data` folder of the project Google Drive. The folder inside the drive is named as, **pips-model**
